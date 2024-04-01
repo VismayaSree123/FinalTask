@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-align:center;">Add Movie</h1>
+<form action="{% url 'movieapp:add' %}" method="post"  enctype="multipart/form-data" >
+    {% csrf_token %}
+    <table align="center" border="">
+        <tr>
+            <td>
+                <label>Movie Name:</label>
+            </td>
+            <td>
+                <input type="text" name="name" placeholder="Enter Movie Name"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Description:</label>
+
+            </td>
+            <td>
+                <input type="text" name="desc" placeholder="Enter Movie Description"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Release Date:</label>
+
+            </td>
+            <td>
+                <input type="date" name="rel_date" placeholder="Enter Date of Release"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Cast:</label>
+
+            </td>
+            <td>
+                <input type="text" name="cast" placeholder="Enter Actors Name"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Category:</label>
+            </td>
+            <td>
+            <select name="genre" id="genre">
+                {% for cat in links %}
+                <option value="{{cat.name}}">{{cat.name}}</option>
+                 {% endfor %}
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label>Poster:</label>
+
+            </td>
+            <td>
+                 <input type="file" name="img"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label>Trailer:</label>
+            </td>
+             <td>
+                <input type="text" name="trailer" placeholder="Paste the Trailer link"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="uid" value="{{request.user.id}}">
+            </td>
+             <td>
+                <input type="submit">
+            </td>
+        </tr>
+    </table>
+</form>
+<br><br><br><br><br><br><br><br>
+<br><br><br><br>
+{% endblock %}
